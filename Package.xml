@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
+    <!-- Example link -->
+
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.8 0.5 0.3"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+  
+  <link name="cam_sup">
+    <visual>
+        <geometry>
+            <cylinder length="0.50" radius="0.05"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="white"/>
+    </visual>
+  </link>
+  
+  <joint name="base_to_cam_sup" type="revolute">
+    <parent link="base_link"/>
+    <child link="cam_sup"/>
+    <limit effort="1000.0" lower="0" upper="3.14" velocity="1"/>
+    <axis xyz="0 0 1"/>
+    <origin xyz="0.4 0 0.3"/>
+  </joint>
+  
+  <link name="cam">
+    <visual>
+        <geometry>
+            <box size="0.2 0.2 0.2"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="red"/>
+    </visual>
+  </link>
+  
+  <joint name="cam_sup_to_cam" type="revolute">
+    <parent link="cam_sup"/>
+    <child link="cam"/>
+    <limit effort="1000.0" lower="0" upper="3.14" velocity="1"/>
+    <axis xyz="0 0 1"/>
+    <origin xyz="0.05 0 0.3"/>
+  </joint>
+
+  <link name="right_leg">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <origin rpy="1.5 0 0" xyz="0 0 0"/>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_right_leg" type="revolute">
+    <parent link="base_link"/>
+    <child link="right_leg"/>
+    <limit effort="1000.0" lower="-0.38" upper="0" velocity="1"/>
+    <axis xyz="0 1 0"/>
+    <origin xyz="0.3 -0.3 0"/>
+  </joint>
+
+  <link name="left_leg">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <origin rpy="1.5 0 0" xyz="0 0 0"/>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_left_leg" type="revolute">
+    <parent link="base_link"/>
+    <child link="left_leg"/>
+    <limit effort="1000.0" lower="-0.38" upper="0" velocity="1"/>
+    <axis xyz="0 1 0"/>
+    <origin xyz="0.3 0.3 0"/>
+  </joint>
+  
+  <link name="front_right">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <origin rpy="1.5 0 0" xyz="0 0 0"/>
+      <material name="white"/>
+    </visual>
+  </link>
+  
+  <link name="front_left">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <origin rpy="1.5 0 0" xyz="0 0 0"/>
+      <material name="white"/>
+    </visual>
+  </link>
+  
+  <joint name="base_to_front_right" type="revolute">
+    <parent link="base_link"/>
+    <child link="front_right"/>
+    <limit effort="1000.0" lower="-0.38" upper="0" velocity="1"/>
+    <axis xyz="0 1 0"/>
+    <origin xyz="-0.3 0.3 0"/>
+  </joint>
+  
+  <joint name="base_to_front_left" type="revolute">
+    <parent link="base_link"/>
+    <child link="front_left"/>
+    <limit effort="1000.0" lower="-0.38" upper="0" velocity="1"/>
+    <axis xyz="0 1 0"/>
+    <origin xyz="-0.3 -0.3 0"/>
+  </joint>
+
+
+
+</robot>
